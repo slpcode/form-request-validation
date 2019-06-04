@@ -1,0 +1,17 @@
+{
+    "name": "slpcode/form-request-validation",
+    "description": "一个数据验证层，基于laravel框架的illuminate/validation",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "slpcode",
+            "email": "1370808424@qq.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Slpcode\\FormRequestValidation\\": "src"
+        }
+    }
+}
