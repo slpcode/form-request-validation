@@ -1,21 +1,32 @@
 <?php
 
+/*
+ * This file is part of the slpcode/form-request-validation.
+ *
+ * (c) slpcode <1370808424@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Slpcode\FormRequestValidation;
 
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\ParameterBag;
-use \Symfony\Component\HttpFoundation\Request as SymfonyRequest;
+use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 class Request extends SymfonyRequest
 {
     use InteractsWithInput;
+
     /**
      * This method belongs to Symfony HttpFoundation and is not usually needed when using Laravel.
      *
      * Instead, you may use the "input" method.
      *
-     * @param  string  $key
-     * @param  mixed  $default
+     * @param string $key
+     * @param mixed  $default
+     *
      * @return mixed
      */
     public function get($key, $default = null)
@@ -46,13 +57,14 @@ class Request extends SymfonyRequest
     /**
      * Get the JSON payload for the request.
      *
-     * @param  string  $key
-     * @param  mixed   $default
+     * @param string $key
+     * @param mixed  $default
+     *
      * @return \Symfony\Component\HttpFoundation\ParameterBag|mixed
      */
     public function json($key = null, $default = null)
     {
-        if (! isset($this->json)) {
+        if (!isset($this->json)) {
             $this->json = new ParameterBag((array) json_decode($this->getContent(), true));
         }
 
@@ -86,5 +98,4 @@ class Request extends SymfonyRequest
     {
         return Str::contains($this->header('CONTENT_TYPE'), ['/json', '+json']);
     }
-
 }

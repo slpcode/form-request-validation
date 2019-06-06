@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the slpcode/form-request-validation.
+ *
+ * (c) slpcode <1370808424@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -12,6 +21,6 @@ return [
     |
     */
 
-    'failed'   => '用户名或密码错误。',
+    'failed' => '用户名或密码错误。',
     'throttle' => '您的尝试登录次数过多，请 :seconds 秒后再试。',
 ];

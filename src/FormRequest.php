@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the slpcode/form-request-validation.
+ *
+ * (c) slpcode <1370808424@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Slpcode\FormRequestValidation;
 
 use Slpcode\FormRequestValidation\Exceptions\ValidationException;
@@ -7,13 +16,15 @@ use Symfony\Component\HttpFoundation\ParameterBag;
 
 class FormRequest extends Request
 {
-    protected $translation_path = __DIR__ . '/lang';
+    protected $translation_path = __DIR__.'/lang';
+
     protected $translation_locale = 'zh-CN';
 
     /**
-     * 构造初始化
+     * 构造初始化.
      *
      * FormRequest constructor.
+     *
      * @param array $attributeData
      */
     public function __construct($attributeData = [])
@@ -21,7 +32,7 @@ class FormRequest extends Request
         parent::__construct($_GET, $_POST, $attributeData, $_COOKIE, $_FILES, $_SERVER);
 
         /**
-         * 判断是否符合传递body数据,例如json形式数据，如果符合则重新赋值$this->request
+         * 判断是否符合传递body数据,例如json形式数据，如果符合则重新赋值$this->request.
          */
         if (0 === strpos($this->headers->get('CONTENT_TYPE'), 'application/x-www-form-urlencoded')
             && \in_array(strtoupper($this->server->get('REQUEST_METHOD', 'GET')), ['PUT', 'DELETE', 'PATCH'])
@@ -35,10 +46,11 @@ class FormRequest extends Request
     }
 
     /**
-     * 设置语言和路径
+     * 设置语言和路径.
      *
      * @param string $locale
      * @param string $path
+     *
      * @return FormRequest
      */
     public function setLang($locale = 'zh-CN', $path = '')
@@ -54,7 +66,7 @@ class FormRequest extends Request
     }
 
     /**
-     * 获取验证实例
+     * 获取验证实例.
      */
     public function getValidator()
     {
@@ -63,6 +75,7 @@ class FormRequest extends Request
 
     /**
      * @return FormRequest
+     *
      * @throws \Exception
      */
     public function check()
@@ -112,7 +125,7 @@ class FormRequest extends Request
     }
 
     /**
-     * 设置验证规则
+     * 设置验证规则.
      *
      * @return array
      */
@@ -122,7 +135,7 @@ class FormRequest extends Request
     }
 
     /**
-     * 设置验证错误信息
+     * 设置验证错误信息.
      *
      * @return array
      */
@@ -132,7 +145,7 @@ class FormRequest extends Request
     }
 
     /**
-     * 自定义字段名称
+     * 自定义字段名称.
      *
      * @return array
      */
