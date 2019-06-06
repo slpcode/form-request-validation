@@ -1,8 +1,12 @@
-form-request-validation
+form-request-validation 
+
+![StyleCI build status](https://github.styleci.io/repos/190148835/shield) 
 ==========
+
 form-request-validation 是一个不局限于框架的请求数据验证层，使用了illuminate/validation（laravel框架的验证模块）。
 详细用法可查阅laravel文档 https://laravel.com/docs/5.4/validation#available-validation-rules。 
 如果需要无依赖版，可以使用overtrue大神的 https://github.com/overtrue/validation
+
 ## Installing
 
 ```shell
