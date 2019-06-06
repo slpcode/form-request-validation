@@ -1,24 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tanbin
- * Date: 2019/6/4
- * Time: 15:33
- */
 
 namespace Slpcode\FormRequestValidation;
 
-use Illuminate\Filesystem\Filesystem;
-use Illuminate\Translation\FileLoader;
-use Illuminate\Translation\Translator;
-use Illuminate\Validation\Factory;
 use Slpcode\FormRequestValidation\Exceptions\ValidationException;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 class FormRequest extends Request
 {
-    private static $validator = null;
-
     protected $translation_path = __DIR__ . '/lang';
     protected $translation_locale = 'zh-CN';
 
@@ -70,13 +58,7 @@ class FormRequest extends Request
      */
     public function getValidator()
     {
-        if (self::$validator === null) {
-            $translation_file_loader = new FileLoader(new Filesystem(), $this->translation_path);
-            $translator = new Translator($translation_file_loader, $this->translation_locale);
-            self::$validator = new Factory($translator);
-        }
-
-        return self::$validator;
+        return Validator::getInstance($this->translation_locale, $this->translation_path);
     }
 
     /**
@@ -89,18 +71,28 @@ class FormRequest extends Request
     }
 
     /**
+     * 创建验证对象
+     *
+     * @return \Illuminate\Validation\Validator
+     */
+    public function make()
+    {
+        return $this->getValidator()->make(
+            $this->validationData(),
+            $this->rules(),
+            $this->messages(),
+            $this->attributes()
+        );
+    }
+
+    /**
      * 进行验证
      *
      * @throws \Exception
      */
     protected function verify()
     {
-        $validatorObj = $this->getValidator()->make(
-            $this->validationData(),
-            $this->rules(),
-            $this->messages(),
-            $this->attributes()
-        );
+        $validatorObj = $this->make();
 
         if ($validatorObj->fails()) {
             throw new ValidationException($validatorObj->messages()->first());

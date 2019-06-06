@@ -2,13 +2,6 @@
 
 use Slpcode\FormRequestValidation\FormRequest;
 
-/**
- * Created by PhpStorm.
- * User: tanbin
- * Date: 2019/6/5
- * Time: 15:01
- */
-
 class TestRequest extends FormRequest
 {
     /**
@@ -20,7 +13,7 @@ class TestRequest extends FormRequest
     {
         return [
             'name' => 'required|max:20',
-            'age' => 'require|min:6'
+            'age' => 'required|min:6'
         ];
     }
 

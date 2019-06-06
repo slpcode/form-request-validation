@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tanbin
- * Date: 2019/6/5
- * Time: 15:56
- */
 
 namespace Slpcode\FormRequestValidation;
 
