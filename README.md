@@ -1,6 +1,8 @@
 form-request-validation 
 
 ![StyleCI build status](https://github.styleci.io/repos/190148835/shield) 
+[![Packagist](https://img.shields.io/packagist/v/slpcode/form-request-validation.svg)](https://packagist.org/packages/slpcode/form-request-validation)
+
 ==========
 
 form-request-validation 是一个不局限于框架的请求数据验证层，使用了illuminate/validation（laravel框架的验证模块）。
