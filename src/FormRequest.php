@@ -26,10 +26,16 @@ class FormRequest extends Request
      * FormRequest constructor.
      *
      * @param array $attributeData
+     * @param bool $remove
      */
-    public function __construct($attributeData = [])
+    public function __construct($attributeData = [], $remove = false)
     {
-        parent::__construct($_GET, $_POST, $attributeData, $_COOKIE, $_FILES, $_SERVER);
+        // 增加传递额外的数据，并提供remove参数，是否清除其他请求数据（可当成纯验证器使用）
+        if ($remove) {
+            parent::__construct([], [], $attributeData, [], [], []);
+        } else {
+            parent::__construct($_GET, $_POST, $attributeData, $_COOKIE, $_FILES, $_SERVER);
+        }
 
         /**
          * 判断是否符合传递body数据,例如json形式数据，如果符合则重新赋值$this->request.
