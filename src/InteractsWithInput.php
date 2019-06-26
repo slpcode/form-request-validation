@@ -225,7 +225,8 @@ trait InteractsWithInput
     public function input($key = null, $default = null)
     {
         return data_get(
-            $this->getInputSource()->all() + $this->query->all(), $key, $default
+            // 优先级，前者优先
+            $this->getInputSource()->all() + $this->query->all() + $this->attributes->all(), $key, $default
         );
     }
 
