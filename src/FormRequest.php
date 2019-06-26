@@ -26,7 +26,7 @@ class FormRequest extends Request
      * FormRequest constructor.
      *
      * @param array $attributeData
-     * @param bool $remove
+     * @param bool  $remove
      */
     public function __construct($attributeData = [], $remove = false)
     {
